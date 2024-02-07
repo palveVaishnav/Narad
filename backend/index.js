@@ -9,6 +9,7 @@ const { Server } = require("socket.io");
 
 const io = new Server(server);
 
+
 const port = 3001;
 app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
