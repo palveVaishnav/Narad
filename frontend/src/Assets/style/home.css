@@ -1,0 +1,153 @@
+.homePage{
+    display: flex;
+}
+.UserSection{
+    display:grid;
+    /* gap: 0; */
+    place-items: center; 
+    background-color: grey;
+    /* border: 2px solid black; */
+    /* color: white; */
+    height: 100vh;
+    width: 20%;
+}
+
+.userInfo{
+    display:flex;
+    /* border: 2px solid white; */
+    place-items: center;
+    padding: 2em;
+}
+.userImage{
+    width: 60px;
+}
+.userName{
+    font-size: 2em;
+}
+.roomPanel{
+    display: grid;
+    place-items: center;
+    /* border: 2px solid black; */
+    gap: 1em;
+    padding: 2em;
+    text-align: left;
+}
+.roomPanel h2{
+    margin-left: -3em;
+}
+.roomButton{
+    padding: 10px 20px;
+    width: 120px;
+    border-radius: .5em;
+}
+.previousRooms{
+    display: grid;  
+    /* border: 2px solid black; */
+    padding: 2em;
+}
+.previousRooms h2{
+    /* margin-left: -2em; */
+}
+.roomCard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 2px;
+    gap: 10px;
+    width: 14em;
+}
+.previousRoomImage{
+    width: 30px;
+}
+.previousRoom{
+    font-size: 1.1em;
+}
+.chatSection{
+    display: grid;
+    /* height: 100vh; */
+    /* border: 2px solid red; */
+    width: 80%;
+    padding: 1em;
+}
+.currentRoom{
+    position: absolute;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 75%;
+    margin: 5px 0;
+    height: 5%;
+    padding: 1em;
+    display: flex;
+    top: 1;
+    background-color: grey;
+}
+
+/* from roomer  */
+
+#chat-container {    
+    /* background-color: inherit; */
+    border-radius: 20px;
+    /* padding: 1em; */
+    overflow: hidden;
+    /* border: 2px solid black; */
+}
+
+#message-container {
+    height: 75vh;
+    margin-top: 10vh;
+    overflow-y: scroll;    
+    padding: 10px;
+
+}
+
+.message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.user1 {
+    background-color: #4caf50;
+    color: #fff;
+    text-align: right;
+    width: fit-content;
+}
+
+.user2 {
+    background-color: #2196f3;
+    color: #fff;
+    text-align: left;
+    width: fit-content;
+    /* max-width: 500px; */
+    /* width: ; */
+}
+
+.input-container {
+    /* border: 2px dotted ; */
+    border-radius: 10px;
+    /* height: 30%; */
+    display: flex;
+    padding: 5px;
+    /* background-color: #f0f0f0; */
+}
+
+#message-input {
+    flex: 1;
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+#send-button {
+    padding: 1em 4em;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    margin-right: 20px;
+    cursor: pointer;
+}
