@@ -18,6 +18,7 @@ app.get('/', (req, res) => {
     // res.sendFile(__dirname + '/index.html');
     res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
+
 //send the message to everyone
 io.on('connection', (socket) => {
     socket.on('inputedMessage', (msg) => {

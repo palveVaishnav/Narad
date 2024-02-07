@@ -2,63 +2,53 @@ import { useState, useEffect } from "react";
 import "../Assets/style/index.css";
 import "../Assets/style/style.css";
 import "../Assets/style/home.css";
-// import "/socket.io/socket.io.js";
 
-// const path = require('path');
+import io from "socket.io-client";
+
+// Create a socket connection outside of the component
+const socket = io();
+
 export function Homepage() {
     const [currentUser, setCurrentUser] = useState(1);
 
+    // Setup event listeners outside of the component
     useEffect(() => {
-        const script = document.createElement("script");
+        const form = document.getElementById('form');
+        form.addEventListener('submit', handleSubmit);
 
-        script.src = "/socket.io/socket.io.js";
-        script.async = true;
-        document.body.appendChild(script);
+        socket.on('inputedMessage', handleMessage);
 
+        // Cleanup function to remove event listeners
         return () => {
-            document.body.removeChild(script);
+            form.removeEventListener('submit', handleSubmit);
+            socket.off('inputedMessage', handleMessage);
         };
     }, []);
 
+    function handleSubmit(event) {
+        event.preventDefault();
+        const input = document.getElementById('message-input');
+        if (input.value) {
+            socket.emit('inputedMessage', input.value);
+            input.value = '';
+        }
+    }
+
+    function handleMessage(msg) {
+        const messages = document.getElementById('message-container');
+        const messageElement = document.createElement('div');
+        messageElement.className = `message user${currentUser}`;
+        messageElement.textContent = msg;
+        messages.appendChild(messageElement);
+        messages.scrollTop = messages.scrollHeight;
+        setCurrentUser(3 - currentUser); // Switch between 1 and 2
+    }
 
     function sendMessage() {
-        // eslint-disable-next-line no-undef
-        const socket = io();
-        const input = document.getElementById('message-input');
-        const messages = document.getElementById('message-container');
-        const form = document.getElementById('form');
-
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            if (input.value) {
-                socket.emit('inputedMessage', input.value);
-                input.value = '';
-            }
-        });
-
-        socket.on('inputedMessage', (msg) => {
-            const messageElement = document.createElement('div');
-            messageElement.className = `message user${currentUser}`;
-            messageElement.textContent = msg;
-            messages.appendChild(messageElement);
-            messages.scrollTop = messages.scrollHeight;
-            //setCurrentUser(3 - currentUser); // Switch between 1 and 2
-        })
-
-        // const messageText = input.value.trim();
-        // if (messageText !== '') {
-        //     const messageElement = document.createElement('div');
-        //     messageElement.className = `message user${currentUser}`;
-        //     messageElement.textContent = messageText;
-
-        //     messages.appendChild(messageElement);
-        //     input.value = '';
-        //     messages.scrollTop = messages.scrollHeight;
-
-        //     // Switch user for the next message
-        //     setCurrentUser(3 - currentUser); // Switch between 1 and 2
-        // }
+        // You can implement this function if needed
+        // For now, it's left empty
     }
+
     return (
         <div className="homePage">
             <div className="UserSection">
@@ -98,6 +88,5 @@ export function Homepage() {
 
             </div>
         </div>
-        // <script src="/socket.io/socket.io.js"></script>
     );
 }
